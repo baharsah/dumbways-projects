@@ -119,7 +119,7 @@ border-radius: 30px;
     border-radius: 10px;
 }
 
-.card-icons > * > * {
+.card-icons > * > * > * {
     padding: 10px;
     filter : invert(99%) sepia(51%) saturate(2%) hue-rotate(118deg) brightness(108%) contrast(100%);
 }
