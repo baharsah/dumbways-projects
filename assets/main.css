@@ -122,6 +122,9 @@ body {
     height: 300px;
     object-fit:cover;
     border-radius: 15px;
+    clip-path: circle(40% at 50% 50%);
+    transform: translate(-50px, -40px);
+
 }
 
 
@@ -145,6 +148,7 @@ section {
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: space-between;
+    margin: 30px;
 }
 
 
@@ -161,27 +165,31 @@ section {
     font-size: large;
  }
 
- .card-image > .animation > * {
-    width: 300px;
-    height: 300px;
-    border-radius: 15px;
-    position: absolute;
-    opacity: 0.7;
+
+
+ .card-attr > .avail{
+    background-color: var(--button-blue);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: medium;
+    font-family: "Comfortaa" , cursive;
+    text-decoration: none;
  }
-
- .lyr1 {
-    background-color: var(--darken-yellow);
-    clip-path: polygon(100% 85%, 100% 100%, 0 100%, 0 85%);
-     animation-name: dark-ani;
-    animation-duration: 500ms;
-
-
+ .card-attr > .unavail{
+    background-color: var(--button-yellow);
+    color: var(--darker-blue);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: medium;
+    font-family: "Comfortaa" , cursive;
+    text-decoration: none;
  }
-
- .lyr2 {
-    clip-path: polygon(100% 95%, 100% 100%, 0 100%, 0 95%);
-    background-color: var(--sharp-yellow);
-    animation-name: sharp-ani;
-    animation-duration: 500ms;
-
+ .unavail > a {
+    color: var(--darker-blue);
+    text-decoration: none;
+ }
+ .avail > a {
+    color: white;
+    text-decoration: none;
  }
