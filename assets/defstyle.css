@@ -1,0 +1,104 @@
+:root {
+    --grey : #e6e6e6;
+    --after-grey : #999999;
+    --blish-grey-button : #373e48;
+    --mecha-blue : #2c5aa0ff ; 
+}
+
+body {
+    background-color: var(--grey);
+}
+
+.card {
+    margin: 100px;
+    background-color: white;
+    border-radius: 20px;
+    font-family: "Comfortaa" , sans-serif;
+    display: flex;
+    justify-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    flex-direction: column;
+}
+
+.card-header {
+    margin: 20px;
+}
+
+.card-button {
+    flex-direction: column;
+}
+
+.btn , .btn-outline
+ {   
+   width: 35%;
+    height: 2rem;
+    padding-right: 0;
+    padding-left: 0;
+    font-size: x-large;
+}
+
+.btn > p {
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    /* justify-content: center; */
+    text-align: center;
+    background-color: var(--blish-grey-button);
+}
+.btn-outline > p {
+    padding: 20px;
+    /* color: white; */
+    /* border-radius: 30px; */
+    /* justify-content: center; */
+    text-align: center;
+    color: var(--blish-grey-button);
+}
+
+.btn > p >  a {
+    text-decoration: none;
+    color: white;
+    margin : 20px ;
+}
+
+.btn-outline> p  > a {
+    text-decoration: none;
+    color: var(--blish-grey-button);
+}
+
+
+.card-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-photo {
+    display: flex;
+margin: 30px;
+flex-wrap: wrap;
+flex-direction: column;
+margin: auto;
+background-color: var(--mecha-blue);
+padding: 30px;
+border-radius: 30px;
+
+}
+
+.card-photo > img {
+    width: 200px;
+    height: 200px;
+}
+
+.card-photodesc {
+    color: white;
+}
+.card-photodesc > h1 {
+    font-size: x-large;
+}
+
+
+.card-photodesc > p {
+    font-size: large;
+}
