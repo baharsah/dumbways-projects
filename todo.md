@@ -4,3 +4,4 @@
 - dicoding system monitor
 - buat day 1
 - ganti gambar
+- Finishing

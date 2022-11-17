@@ -102,3 +102,24 @@ border-radius: 30px;
 .card-photodesc > p {
     font-size: large;
 }
+.card-icons {
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    margin: 30px;
+    align-content: space-between;
+}
+
+.card-icons > * {
+    color: var(--blish-grey-button);
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    background-color: #373e48;
+    border-radius: 10px;
+}
+
+.card-icons > * > * {
+    padding: 10px;
+    filter : invert(99%) sepia(51%) saturate(2%) hue-rotate(118deg) brightness(108%) contrast(100%);
+}
