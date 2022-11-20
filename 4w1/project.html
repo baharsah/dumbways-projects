@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project | Dumbways </title>
+    <link rel="stylesheet" href="../assets/defstyle.css">
+</head>
+<body>
+    <header>
+
+    </header>
+    <nav>
+        <div class="left">
+           <img src="https://dumbways.id/assets/images/brandwhite.png" alt="">
+            <!-- <img src="https://avatars.githubusercontent.com/u/116329865" alt="" > -->
+        </div>
+        <div class="center">
+            <ul class="nav-items">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="selected">
+                    <a href="project.html">My Project</a>
+                </li>
+               </ul>
+        </div>
+        <div class="right">
+            <ul class="nav-items">
+                <li class="">
+                    <!-- <a href="http://">Login</a> -->
+                </li>
+                <li class="btn">
+                    <a href="contact.html">Contact me</a>
+                </li>
+        </ul>
+        </div>
+    </nav>
+    <section>
+
+    </section>
+    <article>
+        
+        <div class="form">
+            <div class="form-title">
+                <h1>
+                    Add Project
+                </h1>
+            </div>
+            <div class="form-content">
+                <form style="width: 500px;">
+                    <div class="form-item">
+                        <label for="">Project Name</label>
+                        <input type="text" name="projectName">
+                    </div>
+                    <div class="form-item flex">
+                        <div>
+                            <label for=""> Start Date</label>
+                            <input type="date" name="startDate" id="">
+                        </div>
+                       
+                        <div>
+                            <label for=""> End Date</label>
+                            <input type="date" name="endDate" id="">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label for="">Tech Stack</label>
+                    </div>
+                    <div class="form-item flex">
+                        <div>
+                            <label class="control checkbox">
+                                <input type="checkbox" name="nodejs">
+                                <span class="control-indicator"></span>
+                                NodeJS
+                              </label>
+                              <label class="control checkbox" >
+                                <input type="checkbox" name="nextjs">
+                                <span class="control-indicator" ></span>
+                                NEXTJs
+                              </label>
+                              
+                              
+                        </div>
+                        <div>
+                            <label class="control checkbox">
+                                <input type="checkbox" name="reactjs">
+                                <span class="control-indicator"></span>
+                               ReactJS
+                              </label>                              <label class="control checkbox">
+                                <input type="checkbox" name="typescript">
+                                <span class="control-indicator"></span>
+                                TypeScript
+                              </label>                   
+
+
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label for="">Content</label>
+                        <textarea id="" name="content" rows="" cols="">
+                        </textarea> 
+                    </div>
+                    <div class="form-item">
+                        <input
+                        name="file"
+                        type="file"
+                        id="fileElem"
+                        multiple
+                        accept="image/*"
+                        class="visually-hidden" />
+                      <label for="fileElem" class="form-elem">Select some files</label>                      
+                          
+                    </div>
+                    <button class="btn-submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Projects</h1>
+            <div class="projectlist">
+                <div class="project-item">
+                    <div class="project-intro">
+                        <div class="project-image"><img src="../assets/dynamic-island-featured.jpg" alt="" srcset=""></div>
+                        <div class="project-description">
+                            <h1>IPhone Dynamic Island</h1>
+                            <p class="duration">Durasi : 1 Bulan 3 Hari</p>
+                        <p>Aplikasi yang biasa aja. beneran.</p>
+                        <div class="project-stack">
+                            <img class="svg" src="../assets/logo-nodejs.svg" alt="" srcset="">
+                            <img class="svg" src="../assets/nextjs-icon-svgrepo-com.svg" alt="" srcset="">
+                            <img class="svg" src="../assets/logo-react.svg" alt="" srcset="">
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div class="project-controls">
+                        <div class="btn"><a href="details.html">Details</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <aside>
+
+    </aside>
+    <footer>
+
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../assets/form.js"></script>
+</html>
