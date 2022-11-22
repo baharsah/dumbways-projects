@@ -34,10 +34,14 @@ function distance(startmilis , endmilis){
 
   var date1 = new Date(startmilis);
 var date2 = new Date(endmilis);
-var diffDays = date2.getDate() - date1.getDate();
+console.log('tes1' , date1.getTime() , date2.getTime())
+var diffTime = date2.getTime() - date1.getTime();
+console.log("tes" , diffTime)
+const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
 
 if(diffDays >= 28){
-  return `${(diffDays - (diffDays % 28))/28} Bulan ${diffDays % 28} hari`
+  return `${((diffDays - (diffDays % 28))/28)} Bulan ${diffDays % 28} hari`
 }else{
   return `${diffDays} Hari`
 }
@@ -51,6 +55,14 @@ function render(object){
 
   efile = filedata
 
+  estack ;
+
+  checkboxes.forEach(function (element){
+
+  estack += `<img class="svg" src="../assets/logo-${element}.svg" alt="" srcset="">`
+
+  })
+
 
 document.querySelector('.projectlist').innerHTML += `
 
@@ -62,9 +74,7 @@ document.querySelector('.projectlist').innerHTML += `
         <p class="duration">${distance(object.startDate , object.endDate)}</p>
     <p>${object.content}</p>
     <div class="project-stack">
-        <img class="svg" src="../assets/logo-nodejs.svg" alt="" srcset="">
-        <img class="svg" src="../assets/nextjs-icon-svgrepo-com.svg" alt="" srcset="">
-        <img class="svg" src="../assets/logo-react.svg" alt="" srcset="">
+      ${estack}
         
     </div>
     </div>
