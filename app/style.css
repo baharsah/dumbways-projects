@@ -1,0 +1,59 @@
+:root {
+    --dark-hover-blue : #003380 ;
+    --dark-blue : #373e48;
+    --darker-blue :#1c1f24;
+    --button-blue : #0044aa;
+    --button-yellow : #ffcc00;
+    --redish-orange : #ff6600;
+    --soft-brownish-orange : #c87137;
+    --sharp-yellow : #ffcc00 ; 
+    --lightsoft-blue : #535d6c ; 
+    --darken-yellow : #d4aa00;
+    --dark-floor-orange : #6c6753;
+    --grey : #e6e6e6;
+    --after-grey : #999999;
+    --blish-grey-button : #373e48;
+    --mecha-blue : #2c5aa0ff ; 
+}
+
+
+
+body {
+    margin: 0;
+    background: var(--grey);
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+}
+
+.header {
+    text-align: center;
+}
+
+.header> h1 {
+
+    text-align: center;
+
+    
+}
+
+.card   {
+    margin: 40px;
+    display: flex;
+    margin: 30px;
+}
+
+.card > div {
+    margin: 30px;
+}
+
+
+.card-item {
+    color: white;
+    background-color: #373e48;
+    padding: 15px;
+    border-radius: 10px;
+    width: 20%;
+}
