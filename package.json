@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.2",
+    "node-sass": "^8.0.0"
+  },
+  "scripts": {
+    "scss": "node-sass --watch assets/scss -o assets/css"
+  }
+}
