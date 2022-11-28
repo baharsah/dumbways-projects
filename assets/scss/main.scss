@@ -1,0 +1,69 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+// @import "../../node_modules/bootstrap/scss/variables.scss";
+// @import "../../node_modules/bootstrap/scss/mixins.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+// design modifier
+
+
+
+// $btn-border-radius : 30px ; 
+$navbar-padding-y:             $spacer * 1; 
+$navbar-padding-x:             null;
+$font-family-sans-serif: "Poppins";
+$input-btn-font-family : "Poppins" ;
+$btn-font-weight: 600 ;  
+// global fs
+
+
+
+// GLOBAL COLORS
+
+$light:   $gray-200;
+$body-bg: $gray-300;
+
+// NAVBAR MODIFIER
+$navbar-light-color:                rgba($black, .55);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
+$navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+$navbar-light-toggler-border-color: rgba($black, .1);
+
+
+
+$navbar-light-brand-color:                $navbar-light-active-color;
+$navbar-light-brand-hover-color:          $navbar-light-active-color;
+$navbar-dark-brand-color:                 $navbar-dark-active-color;
+$navbar-dark-brand-hover-color:           $navbar-dark-active-color;
+
+
+/*!
+   * Baharsah 2022 - Now (baharsah.my.id)
+   */
+
+
+.nav-link.active  {
+    font-weight: 600
+}
+
+.btn-bhr-primary {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white) !important ;
+    --bs-btn-bg: #{$blue-900} !important;
+    --bs-btn-border-color: #{$blue-900};
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #{$blue-900};
+    // --bs-btn-hover-border-color: #{shade-color($blue-900, 10%)};
+    // --bs-btn-focus-shadow-rgb: var(--bd-blue-rgb);
+    // --bs-btn-active-color: #{$blue-900};
+    // --bs-btn-active-bg: #{shade-color($blue-900, 100%)};
+    // --bs-btn-active-border-color: #{shade-color($blue-900, 20%)};
+  
+  }
+  
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
