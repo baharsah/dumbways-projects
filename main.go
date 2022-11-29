@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
+
 	// day 7 pt.1 Implementasikan materi Routing pada halaman Home, Add My Project, Detail Project & Contact Me.
 
 	// routing
@@ -23,6 +25,12 @@ func main() {
 	r.HandleFunc("/project", ProjectHandler).Methods("GET")
 	r.HandleFunc("/contact", ContactHandler).Methods("GET")
 
+	// day 7 pt.2 Kemudian buatlah fungsi Add My Project
+	// dengan menggunakan method POST untuk mendapatkan data inputan (file input image diabaikan),
+	// kemudian tampilkan kedalam Console
+
+	r.HandleFunc("/project", ProjectPostHandler).Methods("POST")
+
 	// turn in mux to http
 
 	http.Handle("/", r)
@@ -32,6 +40,21 @@ func main() {
 	http.ListenAndServe("localhost:8000", r)
 
 	// hei, wait. it's not final section?
+
+}
+
+func ProjectPostHandler(w http.ResponseWriter, r *http.Request) {
+
+	err := r.ParseForm()
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		log.Print(r.FormValue("project"))
+		log.Print(r.FormValue("desc"))
+		log.Print(r.Form["tech"])
+
+	}
 
 }
 

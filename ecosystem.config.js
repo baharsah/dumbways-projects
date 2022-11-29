@@ -1,7 +1,8 @@
 module.exports = {
   apps : [{
     name   : "golang",
-    script : "go run main.go"
+    script : "go run main.go",
+    watch : ["./main.go"]
   },
   {
     name   : "scss",
