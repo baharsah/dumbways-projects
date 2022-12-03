@@ -1,0 +1,11 @@
+- Frontend
+    - **GET** / (Main Page)
+- Backend
+    - ## Auth
+    - **POST** /v1/login (Creating User session)
+    - **POST** /v1/register (Creating User)
+    - **GET** /v1/logout (Creating User)
+    - ## Project
+    - **POST** /v1/project/add (Creating Project)
+    - **GET** /v1/project/delete/{id} (Deleting Project)
+    - **POST** /v1/project/update/{id} (Updating Project)
