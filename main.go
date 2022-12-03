@@ -5,7 +5,16 @@ import (
 	"net/http"
 
 	r "myserver/router"
+
+	"gorm.io/gorm"
 )
+
+type User struct {
+	gorm.Model
+	Username string
+	Password string
+	ID       uint
+}
 
 func main() {
 

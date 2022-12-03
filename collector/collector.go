@@ -6,11 +6,3 @@ package collector
 // 	author  string
 // 	content string
 // }
-
-type Project struct {
-	name        string
-	startDate   string
-	endDate     string
-	description string
-	tech        []string
-}

@@ -1,13 +1,13 @@
 package router
 
 import (
+	"myserver/controller/contact"
+	// "myserver/controller/project"
+	"myserver/controller/home"
+	register "myserver/controller/register"
 	"net/http"
 
 	"github.com/gorilla/mux"
-
-	cont "myserver/controller/contact"
-	homedir "myserver/controller/home"
-	pro "myserver/controller/project"
 )
 
 func Execute() http.Handler {
@@ -22,15 +22,14 @@ func Execute() http.Handler {
 	//add func to handle each routing to work correctly
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	r.PathPrefix("/node_modules/").Handler(http.StripPrefix("/node_modules/", http.FileServer(http.Dir("./node_modules"))))
-	r.HandleFunc("/", homedir.HomeCtrl).Methods("GET")
-	r.HandleFunc("/project", pro.ProjectCtrl).Methods("GET")
-	r.HandleFunc("/contact", cont.ContactCtrl).Methods("GET")
+	r.HandleFunc("/", home.HomeCtrl).Methods("GET")
+	// r.HandleFunc("/project", project.ProjectCtrl).Methods("GET")
+	r.HandleFunc("/contact", contact.ContactCtrl).Methods("GET")
 
 	// day 7 pt.2 Kemudian buatlah fungsi Add My Project
 	// dengan menggunakan method POST untuk mendapatkan data inputan (file input image diabaikan),
 	// kemudian tampilkan kedalam Console
-
-	r.HandleFunc("/project", pro.ProjectCtrl).Methods("POST")
+	r.HandleFunc("/v1/register", register.Register)
 
 	return r
 }

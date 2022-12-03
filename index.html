@@ -22,12 +22,44 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
+                <!-- <a class="nav-link active fs-5" aria-current="page" href="#">Home</a> -->
               </li>
-                <a class="nav-link fs-5" aria-current="page" href="/project">Add Project</a>
+
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle fs-5 me-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Login
+                </button>
+                <div class="dropdown-menu">
+                  <form class="px-4 py-3" method="post" action="/v1/login">
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormEmail1" class="form-label">Username</label>
+                      <input type="text" name="username" class="form-control" id="exampleDropdownFormEmail1" placeholder="@username">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+                      <input type="password" name="username" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check">
+                        <!-- <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                        <label class="form-check-label" for="dropdownCheck">
+                          Remember me
+                        </label> -->
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                    <button type="submit" class="btn btn-primary" formaction="/v1/register">Register</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                    <p class="dropdown-item">Beyond the sky, Beyond The World</p>
+                    <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
+                </div>
+              </div>
                 <li></li>
             </ul>
             <div class="d-flex">
+              
+
               <a class="btn btn-dark fs-5 me-3" href="/contact">Contact Me</a>
             </div>
           </div>
@@ -72,83 +104,112 @@
         <div class="title">
             <h1 class="text-uppercase fw-bold text-center">Projects</h1>
         </div>
-        <div class="d-flex mt-5 justify-content-center flex-wrap">
-            <div class="card w-25 ms-3 mt-3" style="width: 18rem;">
-                <img src="assets/images/313442018_454837306786724_6434178489547408687_n.jpg" class="rounded-1 mt-2 mb-2 ms-2 me-2" alt="...">
+        <div class="d-flex flex-column mx-auto mt-5 justify-content-center flex-wrap">
+          {{range $index , $data := .Project}}
+          <div class="card mb-3 ms-5 me-5" >
+            <div class="row g-0">
+              <div class="col-lg-1">
+                <img src="/assets/images/313442018_454837306786724_6434178489547408687_n.jpg" style="object-fit: fill;" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title fw-bold text-uppercase">dumbways webapp</h5>
-                  <p class="fw-lighter">Duration : 3 Months</p>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis, quibusdam deserunt assumenda veritatis libero aliquam nulla. Animi nemo quia, voluptates ratione in accusantium exercitationem veritatis ut repudiandae dolores molestias.</p>
-                  <div class="d-flex mt-4 mb-4 justify-content-center">
-
-                    <ion-icon size="large" name="logo-nodejs"></ion-icon>
-                    
-                    <ion-icon size="large" name="logo-react"></ion-icon>
-
+                  <h1 class="card-title">{{.Name}}</h1>
+                  <!-- <h5 class="card-title"><input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{.Name}}"></h5> -->
+                  
+                  <p class="card-text">{{.MetaDescription}}</p>
+                  <p class="card-text"><small class="text-muted">Duration Project to work with : {{.Duration}}</small></p>
+                  
+                  <p class="card-text">{{range $index , $data := .Tech }} <small class="btn btn-success"> {{.}} </small>  {{end}}</p>
+                  <p>
+                  </p>
+                  <div class="collapse" id="description{{.Id}}">
+                    <div class="card card-body">
+                      {{.Description}}
+                    </div>
                   </div>
-                  <div class="d-flex justify-content-evenly">
-                    <a href="#" class="p-2 flex-fill me-1 btn btn-bhr-primary text-uppercase">Edit</a>
-                    <a href="#" class="p-2 flex-fill ms-1 btn btn-bhr-primary text-uppercase">Delete</a>
+                  <div class="collapse bg-bhr-blue" id="editable{{.Id}}">
+                    <div class="card card-body">
+                      <form action="/project/edit/{{.Id}}" method="post" enctype="multipart/form-data">
+                      <div class="mb-3">
+                        <label for="pname" class="form-label">Project Name <small>required</small></label>
+                        <input type="test" class="form-control" id="pname" name="pname" value="{{.Name}}">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">ID [ID Project - ID Owner] (Debug Purpose)</label>
+                        <input type="text" readonly class="form-control-plaintext" id="exampleFormControlInput1" placeholder="{{.Id}} - {{.OwnerID}}">
+                      </div>
+                      <div class="mb-3">
+                        <label for="desc" class="form-label">Description <small>required</small></label>
+                        <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3">{{.Description}}</textarea>
+                      </div>
+                      <div class="row g-2 align-items-center">
+                        <div class="col-2">
+                          <label for="inputPassword6" class="col-form-label fw-bold">Start Date</label>
+                        </div>
+                        <div class="col-4">
+                          <input type="date" name="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        <div class="col-2">
+                          <label for="inputPassword6" name="endDate" class="fw-bold col-form-label">End Date</label>
+                        </div>
+                        <div class="col-4">
+                          <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        </div>
+                        <div class="mb3">
+                          <label for="" class="mb-4">Tech stack <small>required</small></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="tech" value="Golang" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Golang
+                          </label>
+                          
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="React" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            React
+                          </label>
+                          
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="Snowpack" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Snowpack
+                          </label>
+                          
+                        </div>
+                        
+                        <div class="form-check form-check-inline mb-5">
+                          <input class="form-check-input" type="checkbox" value="Typescript" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Typescript
+                          </label>
+                          
+                        </div>
+                        <div class="mb-4">
+                          <label for="formFileLg" class="form-label mt-4">Project File <small>required</small></label>
+                          <input class="form-control form-control-lg" name="file" id="formFileLg" type="file">
+                        </div>
+                      <div class="mb-3">
+                        <button type="submit" class="btn btn-warning">Update</button>
+                      </div>
+                    </div>
+                  </form>
                   </div>
                 </div>
               </div>
-              <div class="card w-25 ms-3 mt-3" style="width: 18rem;">
-                <img src="assets/images/313442018_454837306786724_6434178489547408687_n.jpg" class="rounded-1 mt-2 mb-2 ms-2 me-2" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold text-uppercase">dumbways webapp</h5>
-                  <p class="fw-lighter">Duration : 3 Months</p>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis, quibusdam deserunt assumenda veritatis libero aliquam nulla. Animi nemo quia, voluptates ratione in accusantium exercitationem veritatis ut repudiandae dolores molestias.</p>
-                  <div class="d-flex mt-4 mb-4 justify-content-center">
+              <div class="col-md-2 mt-3">
+                <button class="btn btn-primary bi bi-eye fs-5"  data-bs-toggle="collapse" href="#description{{.Id}}" role="button" aria-expanded="false"></button>
+                <button class="btn btn-warning bi bi-pen fs-5" data-bs-toggle="collapse" href="#editable{{.Id}}"></button>
+                <a href="/v1/project/delete/{{.Id}}" class="btn btn-danger bi bi-trash fs-5"></a>
 
-                    <ion-icon size="large" name="logo-nodejs"></ion-icon>
-
-                    <ion-icon size="large" name="logo-react"></ion-icon>
-
-                  </div>
-                  <div class="d-flex justify-content-evenly">
-                    <a href="#" class="p-2 flex-fill me-1 btn btn-bhr-primary text-uppercase">Edit</a>
-                    <a href="#" class="p-2 flex-fill ms-1 btn btn-bhr-primary text-uppercase">Delete</a>
-                  </div>
-                </div>
               </div>
-              <div class="card w-25 ms-3 mt-3" style="width: 18rem;">
-                <img src="assets/images/313442018_454837306786724_6434178489547408687_n.jpg" class="rounded-1 mt-2 mb-2 ms-2 me-2" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold text-uppercase">dumbways webapp</h5>
-                  <p class="fw-lighter">Duration : 3 Months</p>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis, quibusdam deserunt assumenda veritatis libero aliquam nulla. Animi nemo quia, voluptates ratione in accusantium exercitationem veritatis ut repudiandae dolores molestias.</p>
-                  <div class="d-flex mt-4 mb-4 justify-content-center">
+            </div>
+          </div>
 
-                    <ion-icon size="large" name="logo-nodejs"></ion-icon>
-                    
-                    <ion-icon size="large" name="logo-react"></ion-icon>
-
-                  </div>
-                  <div class="d-flex justify-content-evenly">
-                    <a href="#" class="p-2 flex-fill me-1 btn btn-bhr-primary text-uppercase">Edit</a>
-                    <a href="#" class="p-2 flex-fill ms-1 btn btn-bhr-primary text-uppercase">Delete</a>
-                  </div>
-                </div>
-              </div>
-              <div class="card w-25 ms-3 mt-3" style="width: 18rem;">
-                <img src="assets/images/313442018_454837306786724_6434178489547408687_n.jpg" class="rounded-1 mt-2 mb-2 ms-2 me-2" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold text-uppercase">dumbways webapp</h5>
-                  <p class="fw-lighter">Duration : 3 Months</p>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius perferendis, quibusdam deserunt assumenda veritatis libero aliquam nulla. Animi nemo quia, voluptates ratione in accusantium exercitationem veritatis ut repudiandae dolores molestias.</p>
-                  <div class="d-flex mt-4 mb-4 justify-content-center">
-
-                    <ion-icon size="large" name="logo-nodejs"></ion-icon>
-
-                    <ion-icon size="large" name="logo-react"></ion-icon>
-
-                  </div>
-                  <div class="d-flex justify-content-evenly">
-                    <a href="#" class="p-2 flex-fill me-1 btn btn-bhr-primary text-uppercase">Edit</a>
-                    <a href="#" class="p-2 flex-fill ms-1 btn btn-bhr-primary text-uppercase">Delete</a>
-                  </div>
-                </div>
-              </div>
+            {{end}}
         </div>
       </div>
 

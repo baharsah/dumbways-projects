@@ -1,85 +1,40 @@
 package project
 
 import (
-	"fmt"
-	"log"
+	"myserver/model/project"
 	"net/http"
-	"text/template"
+	"time"
 )
 
-type Project struct {
-	name        string
-	startDate   string
-	endDate     string
-	description string
-	tech        []string
+// struktur data project
+
+// penampang data project
+
+var ProjectData = []project.Project{
+	{
+		OwnerID:         1,
+		Id:              0,
+		Name:            "Proyek Terkadang",
+		StartDate:       time.Now(),
+		EndDate:         time.Now(),
+		Description:     "Halo bang Aaoisjdoijoiujokmnokinmoijdoaijdoiankjnkjnee",
+		MetaDescription: "Yes It Is!",
+		Tech:            []string{"Golang", "NodeJS", "React", "Snowpack"},
+		Duration:        "5 Months",
+	},
+	{
+		OwnerID:         2,
+		Id:              1,
+		Name:            "Proyek Terkadang",
+		StartDate:       time.Now(),
+		EndDate:         time.Now(),
+		Description:     "Halo bang",
+		MetaDescription: "Yes It is!",
+		Tech:            []string{"Golang", "NodeJS", "React", "Snowpack"},
+		Duration:        "5 Months",
+	},
 }
 
 func ProjectCtrl(w http.ResponseWriter, r *http.Request) {
-
-	var DetailProject []Project
-
-	if r.Method == http.MethodPost {
-		err := r.ParseForm()
-
-		if err != nil {
-
-			fmt.Println(err)
-
-		} else {
-
-			// projectdata["name"] = r.FormValue("name")
-			// projectdata["startDate"] = r.FormValue("startDate")
-			// projectdata["endDate"] = r.FormValue("endDate")
-			// projectdata["tech"] = r.Form["tech"]
-			// projectdata["desc"] = r.FormValue("desc")
-
-			var name = r.FormValue("name")
-			var startDate = r.FormValue("startDate")
-			var endDate = r.FormValue("endDate")
-			var tech = r.Form["tech"]
-			var description = r.FormValue("desc")
-
-			var collectors = []Project{
-
-				{
-
-					name:        name,
-					startDate:   startDate,
-					endDate:     endDate,
-					tech:        tech,
-					description: description,
-				},
-			}
-
-			append(DetailProject, collectors)
-
-			w.Header().Set("Content-type", "text/html; charset=utf-8")
-			t, e := template.ParseFiles("view/add-project.html")
-
-			if e != nil {
-				w.Write([]byte("Message : " + e.Error()))
-				return
-			}
-
-			er := t.Execute(w, nil)
-
-			if er == nil {
-				log.Print(er)
-			}
-
-		}
-
-	} else {
-		w.Header().Set("Content-type", "text/html; charset=utf-8")
-		t, e := template.ParseFiles("view/add-project.html")
-
-		if e != nil {
-			w.Write([]byte("Message : " + e.Error()))
-			return
-		}
-
-		t.Execute(w, nil)
-	}
 
 }

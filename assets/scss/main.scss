@@ -2,7 +2,7 @@
 @import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 // @import "../../node_modules/bootstrap/scss/variables.scss";
 // @import "../../node_modules/bootstrap/scss/mixins.scss";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap');
 
 // design modifier
 
@@ -11,8 +11,8 @@
 // $btn-border-radius : 30px ; 
 $navbar-padding-y:             $spacer * 1; 
 $navbar-padding-x:             null;
-$font-family-sans-serif: "Poppins";
-$input-btn-font-family : "Poppins" ;
+$font-family-sans-serif: "Jost";
+$input-btn-font-family : "Jost" ;
 $btn-font-weight: 600 ;  
 // global fs
 
@@ -63,6 +63,20 @@ $navbar-dark-brand-hover-color:           $navbar-dark-active-color;
     // --bs-btn-active-border-color: #{shade-color($blue-900, 20%)};
   
   }
+
+  .bg-bhr-blue > div{
+    background-color: #{$blue-200} ; 
+    border-color : #{$blue-400};
+    border-width: 10px
+  }
+
+  // .title {
+  //   background-color: #{$blue-900};
+  // }
+
+  // .title > * {
+  //   background-color: white
+  // }
   
 
 

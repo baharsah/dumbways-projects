@@ -1,8 +1,12 @@
 package home
 
 import (
+	"log"
+	dataproject "myserver/controller/project"
 	"net/http"
 	"text/template"
+
+	u "myserver/model/user"
 )
 
 func HomeCtrl(w http.ResponseWriter, r *http.Request) {
@@ -14,7 +18,10 @@ func HomeCtrl(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Message : " + e.Error()))
 		return
 	}
-
-	t.Execute(w, nil)
+	log.Println(dataproject.ProjectData)
+	t.Execute(w, map[string]interface{}{
+		"User":    u.UserData,
+		"Project": dataproject.ProjectData,
+	})
 
 }
