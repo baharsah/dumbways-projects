@@ -5,16 +5,7 @@ import (
 	"net/http"
 
 	r "myserver/router"
-
-	"gorm.io/gorm"
 )
-
-type User struct {
-	gorm.Model
-	Username string
-	Password string
-	ID       uint
-}
 
 func main() {
 
@@ -25,7 +16,5 @@ func main() {
 	// final servicing
 	log.Print("Server Running!")
 	http.ListenAndServe("localhost:8000", r.Execute())
-
-	// hei, wait. it's not final section?
 
 }

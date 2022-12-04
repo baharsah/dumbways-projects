@@ -74,6 +74,14 @@
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati et odio consectetur tempora delectus doloribus optio odit voluptatum laboriosam libero porro tempore culpa fuga rem, ullam, aliquid nulla vel quaerat?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora qui nisi sed aperiam est, error officia veniam omnis enim vero laboriosam. Eligendi veniam optio, numquam cupiditate reiciendis molestias nihil ratione?
                 </p>
+                <script>console.log("{{.}}")</script>
+                {{range .Flashes}}
+
+                <div class="alert alert-primary" role="alert">
+                  {{.}}
+                </div>
+
+                {{end}}
                 <a class="btn btn-bhr-primary rounded-5 ps-5 pe-5 fw-bold fs-4 me-2" href="/contact">Contact</a>
                 <a class="btn btn-outline-secondary rounded-5 ps-5 pe-5 fw-bold fs-4" type="button">Download CV</a>
               </div>

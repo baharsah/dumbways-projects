@@ -3,54 +3,44 @@ package user
 import (
 	"context"
 	"log"
+	"myserver/conn"
 	dbconn "myserver/conn"
 
 	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
-	IsLogin  bool
 	Username string
 	Password string
 	ID       uint
 }
 
-var UserData User
+type UserSession struct {
+	IsLogin bool
+	ID      rune
+}
 
-func UserLoginVerify(username string, password string) bool {
+type Flasher struct {
+	flashdata string
+}
+
+// var UserData User
+
+func RegisterUser(user User) (bool, error) {
+
 	var status bool
-
-	dbconn.DatabaseConnect()
-
-	user := User{}
-
-	err := dbconn.Conn.QueryRow(context.Background(), "SELECT * FROM tb_user WHERE username=$1", username).Scan(
-		&user.ID, &user.Username, &user.Password,
-	)
-
+	var password = user.Password
+	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(password), 10)
+	conn.DatabaseConnect() // kehed sia maneh nil pointer
+	_, err := dbconn.Conn.Exec(context.Background(), "INSERT INTO users(username , password) VALUES ($1, $2)", user.Username, passwordHash)
 	if err != nil {
-		log.Println(err)
 		status = false
-	}
-
-	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
-	if err != nil {
+		// log.Println("Err Here")
 		log.Println(err)
-		status = false
+		return status, err
 	} else {
 		status = true
+		return status, err
 	}
-
-	return status
-
-}
-
-func RegisterSession(user string) bool {
-
-	return true
-
-}
-
-func RegisterUser(user User) {
 
 }

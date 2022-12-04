@@ -2,9 +2,10 @@ package router
 
 import (
 	"myserver/controller/contact"
+	"myserver/controller/login"
+
 	// "myserver/controller/project"
 	"myserver/controller/home"
-	register "myserver/controller/register"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -29,7 +30,7 @@ func Execute() http.Handler {
 	// day 7 pt.2 Kemudian buatlah fungsi Add My Project
 	// dengan menggunakan method POST untuk mendapatkan data inputan (file input image diabaikan),
 	// kemudian tampilkan kedalam Console
-	r.HandleFunc("/v1/register", register.Register)
+	r.HandleFunc("/v1/register", login.RegisterAct)
 
 	return r
 }

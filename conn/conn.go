@@ -3,7 +3,7 @@ package conn
 import (
 	"context"
 	"fmt"
-	"os"
+	"log"
 
 	"github.com/jackc/pgx/v4"
 )
@@ -18,8 +18,7 @@ func DatabaseConnect() {
 	Conn, err = pgx.Connect(context.Background(), databaseUrl)
 
 	if err != nil {
-		fmt.Println("Koneksi database gagal", err)
-		os.Exit(1)
+		log.Println("Koneksi database gagal", err)
 	}
 
 	fmt.Println("Koneksi ke database berhasil!!")
