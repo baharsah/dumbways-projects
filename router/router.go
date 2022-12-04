@@ -31,6 +31,8 @@ func Execute() http.Handler {
 	// dengan menggunakan method POST untuk mendapatkan data inputan (file input image diabaikan),
 	// kemudian tampilkan kedalam Console
 	r.HandleFunc("/v1/register", login.RegisterAct)
+	r.HandleFunc("/v1/login", login.LoginAcct)
+	r.HandleFunc("/v1/logout", login.LogoutAcct)
 
 	return r
 }

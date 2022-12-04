@@ -27,32 +27,41 @@
 
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle fs-5 me-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  Login
+                  {{if .UserSess.IsLogin}} Selamat datang,  {{.UserSess.Username}} ! {{else}} Login {{end}} 
                 </button>
                 <div class="dropdown-menu">
-                  <form class="px-4 py-3" method="post" action="/v1/login">
+                  {{if .UserSess.IsLogin}}
+                  <div class="px-4 py-3">
                     <div class="mb-3">
-                      <label for="exampleDropdownFormEmail1" class="form-label">Username</label>
-                      <input type="text" name="username" class="form-control" id="exampleDropdownFormEmail1" placeholder="@username">
+                  <a href="v1/logout" class="btn btn-warning">Logout</a>
+
                     </div>
-                    <div class="mb-3">
-                      <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
-                      <input type="password" name="username" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                    </div>
-                    <div class="mb-3">
-                      <div class="form-check">
-                        <!-- <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                        <label class="form-check-label" for="dropdownCheck">
-                          Remember me
-                        </label> -->
+                  </div>                  
+                    {{else}}
+                    <form class="px-4 py-3" method="post" action="/v1/login">
+                      <div class="mb-3">
+                        <label for="exampleDropdownFormEmail1" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="exampleDropdownFormEmail1" placeholder="@username">
                       </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                    <button type="submit" class="btn btn-primary" formaction="/v1/register">Register</button>
-                  </form>
-                  <div class="dropdown-divider"></div>
-                    <p class="dropdown-item">Beyond the sky, Beyond The World</p>
-                    <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
+                      <div class="mb-3">
+                        <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <!-- <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                          <label class="form-check-label" for="dropdownCheck">
+                            Remember me
+                          </label> -->
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Sign in</button>
+                      <button type="submit" class="btn btn-primary" formaction="/v1/register">Register</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                      <p class="dropdown-item">Beyond the sky, Beyond The World</p>
+                      <!-- <a class="dropdown-item" href="#">Forgot password?</a> -->
+                    {{end}}
                 </div>
               </div>
                 <li></li>
@@ -113,6 +122,99 @@
             <h1 class="text-uppercase fw-bold text-center">Projects</h1>
         </div>
         <div class="d-flex flex-column mx-auto mt-5 justify-content-center flex-wrap">
+          {{if .UserSess.IsLogin}}
+          <div class="card mb-3 ms-5 me-5" >
+            <div class="row g-0">
+              <div class="col-lg-1">
+                <img src="/assets/images/313442018_454837306786724_6434178489547408687_n.jpg" style="object-fit: fill;" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h1 class="card-title">Buat Project Baru</h1>
+                 
+                  <p class="card-text">Isikan Project baru dengan menekan tombol "Eject" di kanan card ini</p>
+                  <!-- <p class="card-text"><small class="text-muted">Duration Project to work with : {{.Duration}}</small></p> -->
+                  
+                  <p>
+                  </p>
+                  <div class="collapse bg-bhr-blue" id="editable">
+                    <div class="card card-body">
+                      <form action="/project/create/" method="post" enctype="multipart/form-data">
+                      <div class="mb-3">
+                        <label for="pname" class="form-label">Project Name <small>required</small></label>
+                        <input type="test" class="form-control" id="pname" name="pname" value="">
+                      </div>
+                      <div class="mb-3">
+                        <label for="desc" class="form-label">Description <small>required</small></label>
+                        <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                      <div class="row g-2 align-items-center">
+                        <div class="col-2">
+                          <label for="inputPassword6" class="col-form-label fw-bold">Start Date</label>
+                        </div>
+                        <div class="col-4">
+                          <input type="date" name="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        <div class="col-2">
+                          <label for="inputPassword6" name="endDate" class="fw-bold col-form-label">End Date</label>
+                        </div>
+                        <div class="col-4">
+                          <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                        </div>
+                        <div class="mb3">
+                          <label for="" class="mb-4">Tech stack <small>required</small></label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="tech" value="Golang" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Golang
+                          </label>
+                          
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="React" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            React
+                          </label>
+                          
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" value="Snowpack" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Snowpack
+                          </label>
+                          
+                        </div>
+                        
+                        <div class="form-check form-check-inline mb-5">
+                          <input class="form-check-input" type="checkbox" value="Typescript" name="tech" id="defaultCheck1">
+                          <label class="form-check-label" for="defaultCheck1">
+                            Typescript
+                          </label>
+                          
+                        </div>
+                        <div class="mb-4">
+                          <label for="formFileLg" class="form-label mt-4">Project File <small>required</small></label>
+                          <input class="form-control form-control-lg" name="file" id="formFileLg" type="file">
+                        </div>
+                      <div class="mb-3">
+                        <button type="submit" class="btn btn-warning">Create New Project</button>
+                      </div>
+                    </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 mt-3">
+                <button class="btn btn-primary bi bi-database-fill-up fs-5"  type="submit"></button>
+                
+                <button class="btn btn-warning bi bi-eject-fill fs-5" data-bs-toggle="collapse" href="#editable"></button>
+               
+              </div>
+            </div>
+          </div>
+          {{end}}
           {{range $index , $data := .Project}}
           <div class="card mb-3 ms-5 me-5" >
             <div class="row g-0">
@@ -210,9 +312,10 @@
               </div>
               <div class="col-md-2 mt-3">
                 <button class="btn btn-primary bi bi-eye fs-5"  data-bs-toggle="collapse" href="#description{{.Id}}" role="button" aria-expanded="false"></button>
+                {{if $.UserSess.IsLogin}}
                 <button class="btn btn-warning bi bi-pen fs-5" data-bs-toggle="collapse" href="#editable{{.Id}}"></button>
                 <a href="/v1/project/delete/{{.Id}}" class="btn btn-danger bi bi-trash fs-5"></a>
-
+                {{end}}
               </div>
             </div>
           </div>

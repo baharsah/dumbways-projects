@@ -17,11 +17,15 @@ type User struct {
 
 type UserSession struct {
 	IsLogin bool
-	ID      rune
+	ID      int
 }
 
 type Flasher struct {
 	flashdata string
+}
+
+type ErrorSpec struct {
+	cause string
 }
 
 // var UserData User
@@ -41,6 +45,27 @@ func RegisterUser(user User) (bool, error) {
 	} else {
 		status = true
 		return status, err
+	}
+
+}
+
+func LoginUser(user User) (bool, ErrorSpec, int, error) {
+	// var status bool
+	var userverif User
+	conn.DatabaseConnect()
+	err := conn.Conn.QueryRow(context.Background(), "SELECT id , username ,  password from users where username=$1", user.Username).Scan(&userverif.ID, &userverif.Username, &userverif.Password)
+	if err != nil {
+
+		return false, ErrorSpec{cause: "Username Tidak Ada"}, 0, err
+
+	} else {
+		err = bcrypt.CompareHashAndPassword([]byte(userverif.Password), []byte(user.Password))
+		if err != nil {
+			return false, ErrorSpec{cause: "Password Salah"}, 0, err
+		} else {
+
+			return true, ErrorSpec{}, int(userverif.ID), err
+		}
 	}
 
 }

@@ -34,6 +34,10 @@ func HomeCtrl(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println(dataproject.ProjectData)
 	t.Execute(w, map[string]interface{}{
+		"UserSess": map[string]interface{}{
+			"IsLogin":  session.Values["IsLogin"],
+			"Username": session.Values["Username"],
+		},
 		"Flashes": flashes,
 		"Project": dataproject.ProjectData,
 	})
