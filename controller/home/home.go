@@ -1,8 +1,7 @@
 package home
 
 import (
-	"log"
-	dataproject "myserver/controller/project"
+	"myserver/model/project"
 	"net/http"
 	"text/template"
 
@@ -32,14 +31,25 @@ func HomeCtrl(w http.ResponseWriter, r *http.Request) {
 			flashes = append(flashes, fl.(string))
 		}
 	}
-	log.Println(dataproject.ProjectData)
+	var projectCollector project.Project
+
+	// rest, _ := strconv.Atoi(session.Values["Id"].(string))
+	if session.Values["IsLogin"] != nil {
+
+		projectCollector = project.Project{OwnerID: session.Values["Id"].(int)}
+
+	} else {
+		projectCollector = project.Project{OwnerID: 0}
+
+	}
+	// log.Println(dataproject.ProjectData)
 	t.Execute(w, map[string]interface{}{
 		"UserSess": map[string]interface{}{
 			"IsLogin":  session.Values["IsLogin"],
 			"Username": session.Values["Username"],
 		},
 		"Flashes": flashes,
-		"Project": dataproject.ProjectData,
+		"Project": project.SelectProject(projectCollector),
 	})
 
 }

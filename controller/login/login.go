@@ -45,6 +45,9 @@ func LoginAcct(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			log.Println(id, espec, err)
+			session.AddFlash("Login Gagal! "+err.Error(), "Logstatus")
+			http.Redirect(w, r, "/", http.StatusMovedPermanently)
+
 		} else {
 			var sessdata = user.UserSession{ID: id, IsLogin: true}
 			session.Values["IsLogin"] = sessdata.IsLogin

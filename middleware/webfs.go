@@ -1,5 +1,0 @@
-package webfs
-
-func WebFSHandler() {
-
-}

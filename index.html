@@ -139,10 +139,10 @@
                   </p>
                   <div class="collapse bg-bhr-blue" id="editable">
                     <div class="card card-body">
-                      <form action="/project/create/" method="post" enctype="multipart/form-data">
+                      <form action="/v1/project/create/" method="post" enctype="multipart/form-data">
                       <div class="mb-3">
                         <label for="pname" class="form-label">Project Name <small>required</small></label>
-                        <input type="test" class="form-control" id="pname" name="pname" value="">
+                        <input type="test" class="form-control" id="pname" name="name" value="">
                       </div>
                       <div class="mb-3">
                         <label for="desc" class="form-label">Description <small>required</small></label>
@@ -153,13 +153,13 @@
                           <label for="inputPassword6" class="col-form-label fw-bold">Start Date</label>
                         </div>
                         <div class="col-4">
-                          <input type="date" name="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                          <input type="date" name="startdate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="col-2">
-                          <label for="inputPassword6" name="endDate" class="fw-bold col-form-label">End Date</label>
+                          <label for="inputPassword6" name="enddate" class="fw-bold col-form-label">End Date</label>
                         </div>
                         <div class="col-4">
-                          <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                          <input type="date" id="inputPassword6" name="enddate" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                         </div>
                         <div class="mb3">
@@ -219,34 +219,36 @@
           <div class="card mb-3 ms-5 me-5" >
             <div class="row g-0">
               <div class="col-lg-1">
-                <img src="/assets/images/313442018_454837306786724_6434178489547408687_n.jpg" style="object-fit: fill;" class="img-fluid rounded-start" alt="...">
+                <img src="/files/{{.FileDir}}" style="object-fit: fill;" class="img-fluid rounded-start" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h1 class="card-title">{{.Name}}</h1>
                   <!-- <h5 class="card-title"><input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{.Name}}"></h5> -->
                   
-                  <p class="card-text">{{.MetaDescription}}</p>
-                  <p class="card-text"><small class="text-muted">Duration Project to work with : {{.Duration}}</small></p>
+                  <p class="card-text">{{.MetaDescription}} - oleh :  {{(.OwnerName)}}</p>
+                  <p class="card-text"><small class="text-muted">Duration Project to work with : {{.Duration}} Months</small></p>
+                  <p><small class="text-muted">{{.ParsedStartDate}} - {{.ParsedEndDate}}</small></p>
                   
                   <p class="card-text">{{range $index , $data := .Tech }} <small class="btn btn-success"> {{.}} </small>  {{end}}</p>
                   <p>
                   </p>
-                  <div class="collapse" id="description{{.Id}}">
+                  <div class="collapse" id="description{{.ProjectID}}">
                     <div class="card card-body">
                       {{.Description}}
                     </div>
                   </div>
-                  <div class="collapse bg-bhr-blue" id="editable{{.Id}}">
+                  <div class="collapse bg-bhr-blue" id="editable{{.ProjectID}}">
                     <div class="card card-body">
-                      <form action="/project/edit/{{.Id}}" method="post" enctype="multipart/form-data">
+                      <form action="v1/project/update/" method="post" enctype="multipart/form-data">
                       <div class="mb-3">
                         <label for="pname" class="form-label">Project Name <small>required</small></label>
-                        <input type="test" class="form-control" id="pname" name="pname" value="{{.Name}}">
+                        <input type="test" class="form-control" id="pname" name="name" value="{{.Name}}">
+                        <input type="hidden" name="pid" value="{{.ProjectID}}">
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">ID [ID Project - ID Owner] (Debug Purpose)</label>
-                        <input type="text" readonly class="form-control-plaintext" id="exampleFormControlInput1" placeholder="{{.Id}} - {{.OwnerID}}">
+                        <input type="text" readonly class="form-control-plaintext" id="exampleFormControlInput1" placeholder="{{.ProjectID}} - {{.OwnerID}}">
                       </div>
                       <div class="mb-3">
                         <label for="desc" class="form-label">Description <small>required</small></label>
@@ -257,13 +259,13 @@
                           <label for="inputPassword6" class="col-form-label fw-bold">Start Date</label>
                         </div>
                         <div class="col-4">
-                          <input type="date" name="startDate" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                          <input type="date" name="startdate" value="{{.ParsedFormStartDate}}" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="col-2">
                           <label for="inputPassword6" name="endDate" class="fw-bold col-form-label">End Date</label>
                         </div>
                         <div class="col-4">
-                          <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                          <input type="date" id="inputPassword6" value="{{.ParsedFormEndDate}}" name="enddate" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                         </div>
                         <div class="mb3">
@@ -311,10 +313,10 @@
                 </div>
               </div>
               <div class="col-md-2 mt-3">
-                <button class="btn btn-primary bi bi-eye fs-5"  data-bs-toggle="collapse" href="#description{{.Id}}" role="button" aria-expanded="false"></button>
+                <button class="btn btn-primary bi bi-eye fs-5"  data-bs-toggle="collapse" href="#description{{.ProjectID}}" role="button" aria-expanded="false"></button>
                 {{if $.UserSess.IsLogin}}
-                <button class="btn btn-warning bi bi-pen fs-5" data-bs-toggle="collapse" href="#editable{{.Id}}"></button>
-                <a href="/v1/project/delete/{{.Id}}" class="btn btn-danger bi bi-trash fs-5"></a>
+                <button class="btn btn-warning bi bi-pen fs-5" data-bs-toggle="collapse" href="#editable{{.ProjectID}}"></button>
+                <a href="/v1/project/delete/{{.ProjectID}}" class="btn btn-danger bi bi-trash fs-5"></a>
                 {{end}}
               </div>
             </div>
